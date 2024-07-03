@@ -1,50 +1,39 @@
 
-.container { 
-        width: 70%; 
-        margin: auto; 
-        text-align: center; 
-} 
-
 .dice { 
-        text-align: center; 
+        text-align: left; 
         display: inline; 
         margin: 5px; 
+        height: 80%;
+        width: 80%;
 } 
 body { 
-        background-color: #042f4b; 
+        background-image: url("../images/board.png");
+        background-repeat: no-repeat;
+        background-size: cover;
         margin: 0; 
 } 
 h1 { 
         margin: 30px; 
         font-family: "Lobster", cursive; 
         text-shadow: 5px 0 #232931; 
-        font-size: 4.5rem; 
-        color: #4ecca3; 
+        color: white; 
         text-align: center; 
 } 
-p { 
-        font-size: 2rem; 
-        color: #4ecca3; 
-        font-family: "Indie Flower", cursive; 
-} 
 img { 
-        width: 10%; 
-        height: 10%;
+        width: 25%; 
+        height: 45%;
+        padding: 10px;
 } 
 .bottom { 
         padding-top: 30px; 
 } 
-.butn { 
+.btn { 
         background: #4ecca3; 
         font-family: "Indie Flower", cursive; 
         border-radius: 7px; 
         color: #ffff; 
         font-size: 30px; 
         padding: 16px 25px 16px 25px; 
-        text-decoration: none; 
-} 
-.butn:hover { 
-        background: #232931; 
         text-decoration: none; 
 } 
 @keyframes hithere {
@@ -54,4 +43,13 @@ img {
         70% { transform: rotate(0deg) scale(1.2); }
         100% { transform: scale(1); }
 }
-
+@media (max-width: 575.98px) { 
+        body {
+                background-position: center;
+                background-size: 700px 850px;
+        }
+        img {
+                height: 45%;
+                width: 40%;
+        }
+}
