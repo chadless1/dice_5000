@@ -1,10 +1,24 @@
 
+.container {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+}
+.dice1 {
+        padding-bottom: 15px;
+}
+.dice2 {
+        padding-bottom: 15px;
+}
+.dice3 {
+        padding-bottom: 15px;
+}
 .dice { 
         text-align: left; 
         display: inline; 
-        margin: 5px; 
-        height: 80%;
-        width: 80%;
+        margin: 10px; 
+        height: 100%;
+        width: 100%;
 } 
 body { 
         background-image: url("../images/board.png");
@@ -20,12 +34,15 @@ h1 {
         text-align: center; 
 } 
 img { 
-        width: 25%; 
+        width: 40%; 
         height: 45%;
-        padding: 10px;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: yellow;
+        box-shadow: 1px 1px white;
 } 
 .bottom { 
-        padding-top: 30px; 
+        padding-top: 40px; 
 } 
 .btn { 
         background: #4ecca3; 
@@ -49,7 +66,10 @@ img {
                 background-size: 700px 850px;
         }
         img {
-                height: 45%;
-                width: 40%;
+                height: 40%;
+                width: 43%;
+                padding: 5px;
+                border-radius: 10px;
+
         }
 }
