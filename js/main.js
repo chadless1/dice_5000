@@ -9,6 +9,12 @@ let d5 = document.querySelector(".img5");
 // set dice list
 const diceList = [d1, d2, d3, d4, d5];
 
+// set frozen list
+const frozenList = [];
+
+// set random number list
+const ranNumList = [];
+
 // set roll count
 let rollCount = 0;
 
@@ -23,6 +29,21 @@ window.onload = function() {
 
 // function to create random number list
 
+// roll dice animation
+function animateDice() {
+        
+        for (let i = 0; i < diceList.length; i++){
+                diceList[i].setAttribute("style", "animation: hithere 1s ease; opacity: 0.5;");
+        }
+}
+
+// set random number
+function setRanNumber() {
+        for (let i = 0; i < 6; i++) {
+                
+                ranNumList += Math.floor(Math.random() * 6) + 1; 
+        }
+}
 // calculate score
 
 function calScore() {
@@ -40,12 +61,6 @@ function rollTheDice() {
                 // add to roll count
                 rollCount += 1
 
-                // check for roll count
-                if (rollCount > 1) {
-                     alert("roll count is greater than 1"); 
-                }
-
-                else {
                 //get random number for dice
                 let randomNumber1 = Math.floor(Math.random() * 6) + 1; 
                 let randomNumber2 = Math.floor(Math.random() * 6) + 1; 
@@ -54,12 +69,8 @@ function rollTheDice() {
                 let randomNumber5 = Math.floor(Math.random() * 6) + 1; 
                 
                 // dice roll aniation
-                d1.setAttribute("style", "animation: hithere 1s ease; opacity: 0.5;");
-                d2.setAttribute("style", "animation: hithere 1s ease; opacity: 0.5;");
-                d3.setAttribute("style", "animation: hithere 1s ease; opacity: 0.5;");
-                d4.setAttribute("style", "animation: hithere 1s ease; opacity: 0.5;");
-                d5.setAttribute("style", "animation: hithere 1s ease; opacity: 0.5;");
-                
+                animateDice();
+
                 // set random number and display dice
                 d1.setAttribute("src", "images/dice" + randomNumber1 + ".png"); 
                 d2.setAttribute("src", "images/dice" + randomNumber2 + ".png"); 
@@ -69,11 +80,11 @@ function rollTheDice() {
 
                 setTimeout(function() {
                         //clear animation
-                        d1.setAttribute("style", "none;");
-                        d2.setAttribute("style", "none;");
-                        d3.setAttribute("style", "none;");
-                        d4.setAttribute("style", "none;");
-                        d5.setAttribute("style", "none;");
+                        d1.setAttribute("style", "animation: none;");
+                        d2.setAttribute("style", "animation: none;");
+                        d3.setAttribute("style", "animation: none;");
+                        d4.setAttribute("style", "animation: none;");
+                        d5.setAttribute("style", "animation: none;");
 
 
                 }, 1000)
@@ -81,7 +92,6 @@ function rollTheDice() {
                 // set score 
                 calScore();
 
-                };
         }, 1000); 
         
 } 
