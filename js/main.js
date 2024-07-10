@@ -27,31 +27,53 @@ window.onload = function() {
         //pass
 }
 
-// function to create random number list
-
 // roll dice animation
 function animateDice() {
         
         for (let i = 0; i < diceList.length; i++){
                 diceList[i].setAttribute("style", "animation: hithere 1s ease; opacity: 0.5;");
+                setTimeout(function() {
+                        diceList[i].setAttribute("style", "animation: none;");
+                }, 1000);
         }
 }
 
 // set random number
 function setRanNumber() {
-        for (let i = 0; i < 6; i++) {
+        ranNumList.length = 0;
+        for (let i = 0; i < diceList.length; i++) {
                 
-                ranNumList += Math.floor(Math.random() * 6) + 1; 
+                ranNumList.push(Math.floor(Math.random() * 6) + 1); 
+                diceList[i].setAttribute("src", "images/dice" + ranNumList[i] + ".png"); 
         }
+        
 }
-// calculate score
 
+// calculate score
 function calScore() {
 
-  for (let i = 0; i < diceList.length; i++){
+  for (let i = 0; i < frozenList.length; i++){
           // pass
   }              
 
+}
+
+// add player score
+function addScore() {
+
+        //pass
+         
+}
+
+// reset dice
+function resetDice() {
+
+        score = 0;
+        rollCount = 0;
+        for (let i = 0; i < diceList.length; i++) {
+
+                diceList[i].setAttribute("src", "images/dice6.png");
+        }
 }
 
 // Function to roll the dice 
@@ -59,36 +81,14 @@ function rollTheDice() {
         setTimeout(function() { 
                 
                 // add to roll count
-                rollCount += 1
+                rollCount += 1;
 
-                //get random number for dice
-                let randomNumber1 = Math.floor(Math.random() * 6) + 1; 
-                let randomNumber2 = Math.floor(Math.random() * 6) + 1; 
-                let randomNumber3 = Math.floor(Math.random() * 6) + 1; 
-                let randomNumber4 = Math.floor(Math.random() * 6) + 1; 
-                let randomNumber5 = Math.floor(Math.random() * 6) + 1; 
-                
                 // dice roll aniation
                 animateDice();
 
                 // set random number and display dice
-                d1.setAttribute("src", "images/dice" + randomNumber1 + ".png"); 
-                d2.setAttribute("src", "images/dice" + randomNumber2 + ".png"); 
-                d3.setAttribute("src", "images/dice" + randomNumber3 + ".png"); 
-                d4.setAttribute("src", "images/dice" + randomNumber4 + ".png"); 
-                d5.setAttribute("src", "images/dice" + randomNumber5 + ".png"); 
-
-                setTimeout(function() {
-                        //clear animation
-                        d1.setAttribute("style", "animation: none;");
-                        d2.setAttribute("style", "animation: none;");
-                        d3.setAttribute("style", "animation: none;");
-                        d4.setAttribute("style", "animation: none;");
-                        d5.setAttribute("style", "animation: none;");
-
-
-                }, 1000)
-
+                setRanNumber();
+                
                 // set score 
                 calScore();
 

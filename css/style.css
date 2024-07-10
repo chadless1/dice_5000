@@ -27,8 +27,14 @@ body {
         margin: 0; 
 } 
 h1 { 
-        margin: 30px; 
+        margin: 10px; 
+        color: white; 
+        text-align: center; 
+} 
+h1#title { 
+        margin: 15px; 
         font-family: "Lobster", cursive; 
+        font-size: 35px;
         text-shadow: 5px 0 #232931; 
         color: white; 
         text-align: center; 
@@ -42,17 +48,26 @@ img {
         box-shadow: 1px 1px white;
 } 
 .bottom { 
-        padding-top: 40px; 
+        padding-top: 30px; 
 } 
 .btn { 
-        background: #4ecca3; 
-        font-family: "Indie Flower", cursive; 
-        border-radius: 7px; 
+        background: #0000ff; 
+        border-radius: 10px; 
         color: #ffff; 
-        font-size: 30px; 
+        font-size: 15px; 
         padding: 16px 25px 16px 25px; 
         text-decoration: none; 
 } 
+.table {
+
+        width: 80%;
+        margin: 5px;
+        font-size: 20px;
+}
+td {
+        color: #ffffff;
+        text-align: center;
+}
 @keyframes hithere {
         30% { transform: scale(1.2); }
         40%, 60% { transform: rotate(-20deg) scale(1.2); }

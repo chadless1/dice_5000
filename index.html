@@ -12,7 +12,9 @@
 </head> 
 
 <body>
-	<h1>Dice 5000</h1>
+	<h1 id="title">Dice 5000</h1>
+	<hr>
+	<!-- dice and score-->
 	<div class="container"> 
 		<div class="row">
 			<div class="col-6">
@@ -26,9 +28,9 @@
                                         &ensp;
 					<img class="img4" src="images/dice6.png"> 
 				</div>
-                                <div class="dice3">
+                <div class="dice3">
 					<img class="img5" src="images/dice6.png"> 
-                                </div>
+                </div>
 			</div>
 			<div class="col-6">
 				<h1>Score:</h1>
@@ -37,16 +39,33 @@
 		</div>	
 	</div>
 
-
-<br>
-<br>
-
+	<!-- game buttons -->
 	<div class="container bottom"> 
-		<button type="button" class="btn"
-			onClick="rollTheDice()"> 
-			Roll Dice 
-		</button> 
-	</div> 
+		<button type="button" class="btn" onClick="rollTheDice()">Roll </button> 
+                 &ensp;
+		<button type="button" class="btn" onClick="resetDice()">Reset </button>
+		          &ensp;
+		<button type="button" class="btn" onClick="addScore()">Add Score </button>
+	</div>
+
+    <!-- player scores -->	
+	<div class="container scores">
+		<table class="table">
+			<tr>
+				<td contenteditable="true">Player 1</td>
+				<td contenteditable="true">Player 2</td>
+				<td contenteditable="true">Player 3</td>
+				<td contenteditable="true">Player 4</td>
+			</tr>
+			<tr>
+				<td class="p1Score">0</td>
+				<td class="p2Score">0</td>
+				<td class="p3Score">0</td>
+				<td class="p4Score">0</td>
+			</tr>
+		</table>
+	</div>
+
  	<!-- Bootstrap JS -->
  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>	
 	<!-- Custom JS-->	
