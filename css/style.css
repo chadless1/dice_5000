@@ -68,6 +68,9 @@ td {
         color: #ffffff;
         text-align: center;
 }
+.modal-backdrop {
+       opacity: 0.5;
+}
 @keyframes hithere {
         30% { transform: scale(1.2); }
         40%, 60% { transform: rotate(-20deg) scale(1.2); }
