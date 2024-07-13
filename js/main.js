@@ -38,7 +38,7 @@ const diceList = [d1, d2, d3, d4, d5];
 
 // set roll score
 let rollTag = document.querySelector(".rollScore");
-let rollScore = 0;
+let rollScore = Number(0);
 
 // on window load
 window.onload = function() {
@@ -62,7 +62,17 @@ function setRanNumber() {
                                 diceList[i].active = false;
                         };
                 };
-                
+        };
+};
+
+// check for disabled dice
+function freezeDice() {
+        for (let i = 0; i < diceList.length; i++) {
+               if (!diceList[i].active) {
+                setTimeout(() => {
+                        diceList[i].dice.setAttribute("style", "background-color: red; opacity: 0.8;");
+                }, 1000);
+               };
         };
 };
 
@@ -74,20 +84,28 @@ function calScore() {
                 if (diceList[i].active == false) {
                         if (diceList[i].value == 1) {
                                 rollScore += 100;
-                        }
+                        };
                         if (diceList[i].value == 5) {
                                 rollScore += 50;
-                        }
-                }
-        }
+                        };
+                };
+        };
         rollTag.innerHTML = " ";
         rollTag.innerHTML = rollScore;
 };
 
 // add player score
 function addScore() {
-        alert("this score will be added");
-}
+
+        const playerScores = document.querySelectorAll(".playerScore");
+        const playerNameTag = document.getElementById("selectPlayer");
+        let playerIndex = playerNameTag.selectedIndex;
+        let playerScore = Number(0);
+        playerScore += Number(playerScores[playerIndex].innerHTML);
+        playerScores[playerIndex].innerHTML = playerScore += rollScore;
+        document.getElementById("modalClose").click();
+        resetDice();
+};
 // reset dice
 function resetDice() {
 
@@ -96,9 +114,21 @@ function resetDice() {
         for (let i = 0; i < diceList.length; i++) {
 
                 diceList[i].dice.setAttribute("src", "images/dice6.png");
+                diceList[i].dice.setAttribute("style", "background-color: yellow;");
                 diceList[i].value = 6;
                 diceList[i].active = true;
         };
+};
+
+// set player list
+function setPlayer() {
+        let playerNames = document.querySelectorAll(".playerName");
+        let playerOption = document.querySelectorAll(".playerOption");
+        for (let i = 0; i < playerNames.length; i++) {
+                        
+                playerOption[i].innerHTML = playerNames[i].innerHTML;
+        }
+
 };
 
 // Function to roll the dice 
@@ -108,6 +138,8 @@ function rollTheDice() {
                 // set random number and animate dice
                 setRanNumber();
 
+                // freeze dice
+                freezeDice();
                 
                 // set score 
                 calScore();

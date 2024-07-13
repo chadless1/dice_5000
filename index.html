@@ -45,23 +45,23 @@
                  &ensp;
 		<button type="button" class="btn" onClick="resetDice()">Reset </button>
 		          &ensp;
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Score</button>
+		<button type="button" class="btn" data-toggle="modal" data-target="#myModal" onclick="setPlayer()">Add Score</button>
 	</div>
 
     <!-- player scores -->	
 	<div class="container scores">
 		<table class="table">
 			<tr>
-				<td contenteditable="true">Player 1</td>
-				<td contenteditable="true">Player 2</td>
-				<td contenteditable="true">Player 3</td>
-				<td contenteditable="true">Player 4</td>
+				<td class="playerName" contenteditable="true">Player 1</td>
+				<td class="playerName" contenteditable="true">Player 2</td>
+				<td class="playerName" contenteditable="true">Player 3</td>
+				<td class="playerName" contenteditable="true">Player 4</td>
 			</tr>
 			<tr>
-				<td class="p1Score">0</td>
-				<td class="p2Score">0</td>
-				<td class="p3Score">0</td>
-				<td class="p4Score">0</td>
+				<td class="playerScore" contenteditable="true" inputmode="decimal">0</td>
+				<td class="playerScore" contenteditable="true" inputmode="decimal">0</td>
+				<td class="playerScore" contenteditable="true" inputmode="decimal">0</td>
+				<td class="playerScore" contenteditable="true" inputmode="decimal">0</td>
 			</tr>
 		</table>
 	</div>
@@ -70,7 +70,7 @@
 	<div class="modal" id="myModal" role="dialog">
 	  <div class="modal-dialog modal-dialog-centered">
 			<!-- Modal content-->
-			<div class="modal-content">
+			<div class="modal-content" id="modalWindow">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">Add Score</h4>
@@ -78,14 +78,14 @@
 				<div class="modal-body">
 					<p>Select Player</p>
 					<select class="form-control" id="selectPlayer">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
+						<option class="playerOption"></option>
+						<option class="playerOption"></option>
+						<option class="playerOption"></option>
+						<option class="playerOption"></option>
 					</select>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="modalClose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-default" onclick="addScore()">Add Score</button>
 				</div>
 			</div>
