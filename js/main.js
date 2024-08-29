@@ -11,62 +11,83 @@ const d1 = {
         dice: dice1,
         value: 6,
         active: true,
+        scored: false,
 };
 const d2 = {
         dice: dice2,
         value: 6,
         active: true,
+        scored: false,
 };
 const d3 = {
         dice: dice3,
         value: 6,
         active: true,
+        scored: false,
 };
 const d4 = {
         dice: dice4,
         value: 6,
         active: true,
+        scored: false,
 };
 const d5 = {
         dice: dice5,
         value: 6,
         active: true,
+        scored: false,
 };
 
 // set dice list
 const diceList = [d1, d2, d3, d4, d5];
 
+// set plaer scores
+const playerScores = document.querySelectorAll(".playerScore");
+const playerNameTag = document.getElementById("selectPlayer");
+let playerIndex = playerNameTag.selectedIndex;
+let playerScore = 0;
+
 // set roll score
 let rollTag = document.querySelector(".rollScore");
-let rollScore = Number(0);
+let rollScore = 0;
+
+// keep track of number of disbaled dice (1 or 5) for current roll
+let roll_disabled_count = 0;
+
+// keep track of number of disbaled dice (1 or 5)
+let disabled_count = 0;
 
 // on window load
 window.onload = function() {
         //pass
 };
 
-// animate dice and set random number
+// animate dice roll and set random number
 function setRanNumber() {
+        roll_disabled_count = 0;
         for (let i = 0; i < diceList.length; i++) {
                 if (diceList[i].active) {
                         // animate dice
                         diceList[i].dice.setAttribute("style", "animation: hithere 1s ease; opacity: 0.5;");
-                        setTimeout(function() {
+                        setTimeout(() => {
                                 diceList[i].dice.setAttribute("style", "animation: none;");
                         }, 1000);
                         // set random number
                         diceList[i].value = (Math.floor(Math.random() * 6) + 1); 
                         diceList[i].dice.setAttribute("src", "images/dice" + diceList[i].value + ".png");         
-
+                        // if dice is (1 or 5) set status 
                         if (diceList[i].value == 1 || diceList[i].value == 5) {
                                 diceList[i].active = false;
+                                disabled_count += 1;
+                                roll_disabled_count += 1;
                         };
                 };
         };
 };
 
-// check for disabled dice
+// check for scored dice and disable from roll
 function freezeDice() {
+        
         for (let i = 0; i < diceList.length; i++) {
                if (!diceList[i].active) {
                 setTimeout(() => {
@@ -77,46 +98,80 @@ function freezeDice() {
 };
 
 // calculate score
+//
+// check for dice values of 1 & 5
+//      1 = 100 points
+//      5 = 50 points
+//
 function calScore() {
-
-        rollScore = 0;
+        if (roll_disabled_count == 0) {
+                setTimeout(() => {
+                        alert("No Dice!\n\nYou did not score any points.\n\nTurn Over!");
+                        resetDice();
+                }, 1000);
+        };
+        if (disabled_count == 5) {
+                setTimeout(() => {
+                        $("#freshRollModal").modal('show');
+                        //freshRoll()
+                }, 1000);
+        };
         for (let i = 0; i < diceList.length; i++) {
-                if (diceList[i].active == false) {
+                if (diceList[i].active == false && diceList[i].scored == false) {
                         if (diceList[i].value == 1) {
                                 rollScore += 100;
+                                diceList[i].scored = true;
                         };
-                        if (diceList[i].value == 5) {
+                        if (diceList[i].value == 5 && diceList[i].scored == false) {
                                 rollScore += 50;
+                                diceList[i].scored = true;
                         };
                 };
         };
-        rollTag.innerHTML = " ";
-        rollTag.innerHTML = rollScore;
+        setTimeout(() => {
+                rollTag.innerHTML = " ";
+                rollTag.innerHTML = rollScore;
+        }, 1000);
 };
 
 // add player score
 function addScore() {
-
         const playerScores = document.querySelectorAll(".playerScore");
         const playerNameTag = document.getElementById("selectPlayer");
         let playerIndex = playerNameTag.selectedIndex;
-        let playerScore = Number(0);
-        playerScore += Number(playerScores[playerIndex].innerHTML);
+        let playerScore = 0;
+        playerScore = Number(playerScores[playerIndex].innerHTML);
         playerScores[playerIndex].innerHTML = playerScore += rollScore;
         document.getElementById("modalClose").click();
         resetDice();
+        checkForWinner();
 };
+
 // reset dice
 function resetDice() {
-
         rollScore = 0;
         rollTag.innerHTML = 0;
+        roll_disabled_count = 0;
+        disabled_count = 0;
         for (let i = 0; i < diceList.length; i++) {
-
                 diceList[i].dice.setAttribute("src", "images/dice6.png");
                 diceList[i].dice.setAttribute("style", "background-color: yellow;");
                 diceList[i].value = 6;
                 diceList[i].active = true;
+                diceList[i].scored = false;
+        };
+};
+
+// fresh roll
+function freshRoll() {
+        
+        document.getElementById("modalClose2").click();
+        for (let i = 0; i < diceList.length; i++) {
+                diceList[i].dice.setAttribute("src", "images/dice6.png");
+                diceList[i].dice.setAttribute("style", "background-color: yellow;");
+                diceList[i].value = 6;
+                diceList[i].active = true;
+                diceList[i].scored = false;
         };
 };
 
@@ -125,25 +180,28 @@ function setPlayer() {
         let playerNames = document.querySelectorAll(".playerName");
         let playerOption = document.querySelectorAll(".playerOption");
         for (let i = 0; i < playerNames.length; i++) {
-                        
                 playerOption[i].innerHTML = playerNames[i].innerHTML;
-        }
-
+        };
 };
+
+// check for winning score of 5000
+function checkForWinner() {
+        let winningPlayer = playerNameTag.options[playerNameTag.selectedIndex].text;
+        for (let i = 0; i < playerScores.length; i++) {
+                if (Number(playerScores[i].innerHTML >= 5000)) {
+                        alert(`Winner!\n\n${winningPlayer}\n\nRemaining Players get one last roll for a chance to win.`);
+                }
+        }
+}
 
 // Function to roll the dice 
 function rollTheDice() { 
         setTimeout(function() { 
-
-                // set random number and animate dice
+                // set random number and animate dice roll
                 setRanNumber();
-
-                // freeze dice
+                // freeze scored dice
                 freezeDice();
-                
-                // set score 
+                // set roll score 
                 calScore();
-
         }, 1000); 
-        
 };
