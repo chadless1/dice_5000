@@ -6,9 +6,11 @@ a dice game
 First to score 5000 points wins!
 
 Every roll must contain either a 1 or a 5 or else you score no points.
-3 of a kind scores higher.
+If you roll multiple of 3 scoring is higher.
 Keep rolling until you miss or collect your points.
 If all dice equal either 1 or 5 you get a "fresh roll" and continue with a fresh set of dice but keep your score.
+
+You must score 500 or more points in order to start scoring.
 
 Points:
 - 5 = 50 poits
